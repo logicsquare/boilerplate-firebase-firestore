@@ -3,15 +3,17 @@ import * as functions from 'firebase-functions';
 import * as express from 'express';
 import * as bodyParser from "body-parser";
 
-import { app as routes } from "./routes";
+import { apiVersion } from "./config"
 
-const main = express();
+import { StudentRoutes } from './routes/index';
 
-main.use(bodyParser.json());
-main.use(bodyParser.urlencoded({ extended: false }));
+const app: express.Application = express();
 
-main.use("/api/v1", routes);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// rest is your functions name, and you will pass main as 
+app.use(`/api/v${apiVersion}/student`, StudentRoutes);
+
+// rest is your functions name, and you will pass app as 
 // a parameter
-export const rest = functions.https.onRequest(main);
+export const rest = functions.https.onRequest(app);
