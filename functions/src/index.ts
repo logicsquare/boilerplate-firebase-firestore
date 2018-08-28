@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 // import * as firebaseHelper from 'firebase-functions-helper';
 import * as express from 'express';
 import * as bodyParser from "body-parser";
+import * as cors from "cors";
 
 import { apiVersion } from "./config"
 
@@ -11,6 +12,7 @@ const app: express.Application = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors())
 
 app.use(`/api/v${apiVersion}/student`, StudentRoutes);
 
