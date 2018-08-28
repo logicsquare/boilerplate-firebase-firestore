@@ -83,6 +83,5 @@ typings/
 
 .firebaserc
 
-## Ignore all transpiled js files in lib/ but keep the directory itself
-lib/*
-!lib/.gitkeep
+## Ignore all transpiled js files in dist/ (the folder is recreated on deploy/build)
+dist/

@@ -5,7 +5,7 @@
   },
   "scripts": {
     "lint": "tslint --project tsconfig.json",
-    "build": "rm -rf lib/ && tsc",
+    "build": "rm -rf dist/ && tsc",
     "build:watch": "tsc -w",
     "serve": "npm run build && firebase serve --only functions",
     "shell": "npm run build && firebase functions:shell",
@@ -13,12 +13,12 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "firebase-admin": "~6.0.0",
-    "firebase-functions": "^2.0.3"
+    "firebase-functions": "^2.0.5"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",

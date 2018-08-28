@@ -3,9 +3,10 @@
     "lib": ["es6", "esnext"],
     "module": "commonjs",
     "noImplicitReturns": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "sourceMap": true,
-    "target": "es6"
+    "target": "es6",
+    "allowJs": true
   },
   "compileOnSave": true,
   "include": [
