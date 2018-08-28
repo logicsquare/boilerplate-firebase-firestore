@@ -82,3 +82,7 @@ typings/
 .vscode/
 
 .firebaserc
+
+## Ignore all transpiled js files in lib/ but keep the directory itself
+lib/*
+!lib/.gitkeep
