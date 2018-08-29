@@ -1,32 +1,31 @@
 import { Router, Request, Response } from "express";
 import { db } from "../db"
-import { Firestore } from "@google-cloud/firestore";
 
 const router: Router = Router();
 
 const Student = db.collection("students")
 
-router.get("/", async (req: Request, res: Response) => {
+export const find = async (req: Request, res: Response) => {
   try {
     const students: FirebaseFirestore.QuerySnapshot = await Student.get()
-    return res.json({ error: false, students: students.docs.map(doc => doc.data()) })
+    return res.json({ error: false, students: students.docs.map(doc => Object.assign({ id: doc.id }, doc.data())) })
   } catch (error) {
     return res.status(500).json({ error: true, reason: error.message })
   }
-});
+}
 
-router.get("/:name", async (req: Request, res: Response) => {
+export const get = async (req: Request, res: Response) => {
   const { name } = req.params;
   try {
     const students: FirebaseFirestore.QuerySnapshot = await Student.where("name", "==", name).get()
     if (students.docs.length === 0) throw new Error(`No such student with name ${name}`)
-    return res.json({ error: false, students: students.docs.map(doc => doc.data()) })
+    return res.json({ error: false, students: students.docs.map(doc => Object.assign({ id: doc.id }, doc.data())) })
   } catch (error) {
     return res.status(500).json({ error: true, reason: error.message })
   }
-});
+}
 
-router.post("/", async (req: Request, res: Response) => {
+export const post = async (req: Request, res: Response) => {
   interface StudentInterface {
     name?: string;
     age?: number;
@@ -43,9 +42,9 @@ router.post("/", async (req: Request, res: Response) => {
     console.log(error);
     return res.status(500).json({ error: true, reason: error.message })
   }
-});
+}
 
-router.put("/:id", async (req: Request, res: Response) => {
+export const put = async (req: Request, res: Response) => {
   interface StudentInterface {
     name?: string;
     age?: number;
@@ -64,9 +63,9 @@ router.put("/:id", async (req: Request, res: Response) => {
     console.log(error);
     return res.status(500).json({ error: true, reason: error.message })
   }
-});
+}
 
-router.patch("/:id", async (req: Request, res: Response) => {
+export const patch = async (req: Request, res: Response) => {
   interface StudentInterface {
     name?: string;
     age?: number;
@@ -86,9 +85,9 @@ router.patch("/:id", async (req: Request, res: Response) => {
     console.log(error);
     return res.status(500).json({ error: true, reason: error.message })
   }
-});
+}
 
-router.delete("/:id", async (req: Request, res: Response) => {
+export const remove = async (req: Request, res: Response) => {
   const { id }  = req.params
   try {
     const student: FirebaseFirestore.DocumentReference = Student.doc(id)
@@ -98,6 +97,4 @@ router.delete("/:id", async (req: Request, res: Response) => {
     console.log(error);
     return res.status(500).json({ error: true, reason: error.message })
   }
-});
-
-export const StudentRoutes: Router = router;
+}
