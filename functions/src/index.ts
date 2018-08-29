@@ -1,12 +1,12 @@
-import * as functions from 'firebase-functions';
-// import * as firebaseHelper from 'firebase-functions-helper';
-import * as express from 'express';
+import * as functions from "firebase-functions";
+// import * as firebaseHelper from "firebase-functions-helper";
+import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
 
 import { apiVersion } from "./config"
 
-import { StudentRoutes } from './routes/index';
+import { StudentRoutes } from "./routes/index";
 
 const app: express.Application = express();
 
