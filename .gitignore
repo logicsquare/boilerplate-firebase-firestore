@@ -82,6 +82,11 @@ typings/
 .vscode/
 
 .firebaserc
+.firebase
 
 ## Ignore all transpiled js files in dist/ (the folder is recreated on deploy/build)
 dist/
+
+## Ignore generated apidocs & coverage reports
+public/docs
+public/coverage

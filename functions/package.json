@@ -11,7 +11,9 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "docs:generate": "apidoc -i src/ -o ../public/docs",
+    "docs:deploy": "firebase deploy --only hosting"
   },
   "main": "dist/index.js",
   "dependencies": {
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.16.0",
+    "apidoc": "^0.17.6",
     "tslint": "~5.8.0",
     "typescript": "~2.8.3"
   },
